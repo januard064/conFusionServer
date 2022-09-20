@@ -7,6 +7,8 @@ var logger = require('morgan');
 var session = require('express-session')
 var FileStore =  require('session-file-store')(session)
 
+var config  = require('./config')
+
 var passport = require('passport')
 var authenticate  = require('./authenticate')
 
@@ -20,7 +22,8 @@ const mongoose = require('mongoose')
 
 const Dishes = require('./models/dishes')
 
-const url = 'mongodb://localhost:27017/conFusion'
+// const url = 'mongodb://localhost:27017/conFusion'
+const url  = config.mongoUrl
 
 const connect = mongoose.connect(url)
 
@@ -68,7 +71,7 @@ function auth (req, res, next) {
 }
 
 
-app.use(auth)
+// app.use(auth)
 
 app.use(express.static(path.join(__dirname, 'public')));
 
